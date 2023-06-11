@@ -103,8 +103,8 @@ public class TGraph {
                 }
                 else if(k==n_r-1){
                     i=1;
-                    for(i=1; i<n_c; i++){
-                        x[0][i] = (byte) left[k][0];
+                    for(int h=1; h<n_c; h++){
+                        x[0][i] = (byte) right[h][0];
                         i+=1;
                     }
                     Matrix X = new Matrix(x);
@@ -116,7 +116,7 @@ public class TGraph {
             for(i=1; i<n_c; i++){
                 count[i] = 0;
                 for(int l=1; l<w_c+1; l++){
-                    count[i] = count[i] + left[right[i][l]][0];
+                    count[i] = count[i] + left[right[i][l]][0]; 
                 }
 
                 if(count[i]> max){
