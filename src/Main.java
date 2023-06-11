@@ -119,16 +119,85 @@ public class Main {
         //*** FIN EXO 7 ***
 
         //DEBUT EXO 9
-        byte[][] x  = {{0,0,0,1,1,1,0,1,0,1,1,0,0,0,1,1,0,0,0,1}};
-        byte[][] e1 ={{0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}};
-        byte[][] e2 = {{0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}};
-        byte[][] e3 ={{0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0}};
-        byte[][] e4 = {{0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0}};
-        Matrix X = new Matrix(e3);
+        System.out.println("*****EXO 9*****");
+        byte[][] __x  = {{1,0,1,0,1,1,0,1,0,1,1,0,0,0,1,1,0,0,0,1}};
+        byte[][] _e1 ={{0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}};
+        byte[][] _e2 = {{0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}};
+        byte[][] _e3 ={{0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0}};
+        byte[][] _e4 = {{0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0}};
+
+        Matrix e1 = new Matrix(_e1);
+        Matrix e2 = new Matrix(_e2);
+        Matrix e3 = new Matrix(_e3);
+        Matrix e4 = new Matrix(_e4);
+
+        Matrix x = new Matrix(__x);
+        Matrix y1 = x.add(e1);
+        Matrix y2 = x.add(e2);
+        Matrix y3 = x.add(e3);
+        Matrix y4 = x.add(e4);
         Matrix H = loadMatrix("matrix-15-20-3-4", 15, 20);
         TGraph Tanner = new TGraph(H, 3, 4);
-        Matrix decodage = Tanner.decode(X, 100);
+
+        Matrix _syst =  H.sysTransform();
+        Matrix __G = _syst.genG();
+        
+        Matrix decodage = Tanner.decode(x, 100);
+        System.out.println("x avant correction:");
+        x.display();
+        System.out.println("x après correction:");
         decodage.display();
+
+
+        Matrix __H = loadMatrix("matrix-15-20-3-4", 15, 20);
+
+        
+        System.out.println("y1:");
+        y1.display();
+        System.out.println("Syndrome de y1:");
+        (__H.multiply(y1.transpose())).display();
+        System.out.println("Correction x1 de y1:");
+        Matrix x1 = Tanner.decode(y1, 100);
+        x1.display();
+        System.out.print("x1=x ? ");
+        System.out.println(x.isEqualTo(x1));
+        System.out.println("--------------------------");
+
+
+        System.out.println("y2:");
+        y2.display();
+        System.out.println("Syndrome de y2:");
+        (__H.multiply(y2.transpose())).display();
+        System.out.println("Correction x2 de y2:");
+        Matrix x2 = Tanner.decode(y2, 100);
+        x2.display();
+        System.out.print("x2=x ? ");
+        System.out.println(x.isEqualTo(x2));
+        System.out.println("--------------------------");
+
+
+        System.out.println("y3:");
+        y3.display();
+        System.out.println("Syndrome de y3:");
+        (__H.multiply(y3.transpose())).display();
+        System.out.println("Correction x3 de y3:");
+        Matrix x3 = Tanner.decode(y3, 100);
+        x3.display();
+        System.out.print("x3=x ? ");
+        System.out.println(x.isEqualTo(x3));
+        System.out.println("--------------------------");
+
+
+        System.out.println("y4:");
+        y4.display();
+        System.out.println("Syndrome de y4:");
+        (__H.multiply(y4.transpose())).display();
+        System.out.println("Correction x4 de y4:");
+        Matrix x4 = Tanner.decode(y4, 100);
+        x4.display();
+        System.out.print("x4=x ? ");
+        System.out.println(x.isEqualTo(x4));
+        System.out.println("--------------------------");
 
         //FIN EXO 9
 
