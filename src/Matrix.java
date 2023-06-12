@@ -185,12 +185,25 @@ public class Matrix {
                     G.data[i][j] = (byte) 0;
                 }
                 else{
-                    G.data[i][j] = transp_M.data[i][j-5];
+                    G.data[i][j] = transp_M.data[i][j-(cols-rows)];
                 }
             }
         }
 
         return G;
+    }
+
+    public Matrix errGen(int w){
+        
+        Random r = new Random();
+        Matrix e = new Matrix(1, this.cols);
+        for(int i=0; i<w; i++){
+            int n = r.nextInt(this.cols); //on récupère l'indice d'une colonne au hasard
+            if(e.getElem(0, n) == 0){
+                e.setElem(0, n, (byte)1);
+            }
+        }
+        return e;
     }
 
 

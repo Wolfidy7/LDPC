@@ -201,13 +201,40 @@ public class Main {
 
         //FIN EXO 9
 
-        /*Matrix H = loadMatrix("matrix-15-20-3-4", 15, 20);
-        byte[][] x = {{1,0, 1, 0, 1, 1, 0, 1, 0, 1, 1, 0, 0, 0, 1, 1, 0, 0,0,1}};
-        Matrix E1 = new Matrix(x);
+        //DEBUT EXO 11
+        System.out.println("*****EXO 11*****");
+        Matrix H2 = loadMatrix("matrix-2048-6144-5-15", 2048, 6144);
+        TGraph Graph_ = new TGraph(H2, 5, 15);
+        Matrix G_= (H2.sysTransform()).genG();
+        //G_.display();
 
-        Matrix f = H.multiply(E1.transpose());
-        f.display();*/
+        //Génération de x et encodage à l'aide de G
+        byte[][] u_ = new byte[1][4096];
+        for(int i=0; i<4096; i++){
+            if ((i%2)==0){
+                u_[0][i]=1;
+            }
+            else{
+                u_[0][i]=0;
+            }
+        }
+        Matrix u__ = new Matrix(u_);
 
+        Matrix x__ = u__.multiply(G_);
+
+        //Graphe de Tanner
+        System.out.println("Graphe de Tanner:");
+        Graph_.display();
+
+        //FIN EXO 11
+
+        //***EXO 12 ***
+        System.out.println("*****EXO 12*****");
+        
+        int poids=5;
+        System.out.println("Vecteur ligne de poids " + poids);
+        Matrix you = new Matrix(1,15);
+        you.errGen(poids).display();
 
     }
 }
