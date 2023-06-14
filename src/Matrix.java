@@ -146,7 +146,7 @@ public class Matrix {
 
     public Matrix sysTransform(){
 
-        for (int i = 0, j = cols-rows; i < rows && j < cols; i++, j++) {
+        for (int i = 0, j = cols-rows; i < rows && j < cols; i++, j++) { //première partie: échange des lignes
             for (int k = i; k<rows; k++){
                 if (getElem(k, j) == (byte) 1){
                     shiftRow(i, k);
@@ -179,13 +179,13 @@ public class Matrix {
         for(int i=0; i<cols-rows; i++){
             for(int j=0; j<cols; j++){
                 if(i==j){
-                    G.data[i][j] = (byte) 1;
+                    G.data[i][j] = (byte) 1;  //Mise en place de la matrice identité
                 }
                 else if(i<cols-rows && j<cols-rows){
                     G.data[i][j] = (byte) 0;
                 }
                 else{
-                    G.data[i][j] = transp_M.data[i][j-(cols-rows)];
+                    G.data[i][j] = transp_M.data[i][j-(cols-rows)];//concaténation avec la transposée de M
                 }
             }
         }

@@ -222,6 +222,9 @@ public class Main {
 
         Matrix x__ = u__.multiply(G_);
 
+        System.out.println("Encodage de x = u*G:");
+        x__.display();
+
         //Graphe de Tanner
         System.out.println("Graphe de Tanner:");
         Graph_.display();
@@ -231,7 +234,7 @@ public class Main {
         //***EXO 12 ***
         System.out.println("*****EXO 12*****");
         
-        int poids=5;
+        int poids=2;
         System.out.println("Vecteur ligne de poids " + poids);
         Matrix you = new Matrix(1,15);
         you.errGen(poids).display();

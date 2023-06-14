@@ -77,13 +77,11 @@ public class TGraph {
     }
     
     public Matrix decode(Matrix code, int rounds) {
-		 	
-		 
+		 		 
 		 	
 		 	for(int i=0; i<n_c;i++) {
 	    		
 	    		right[i][0] = code.getElem(0, i);
-	    		
 	    		
 	    	}
 		 	
@@ -95,12 +93,9 @@ public class TGraph {
 	    	int [] count = new int[code.getCols()];
 	    	
 	    	
-	    	
 	    	for(int i=0; i<rounds; i++) {
 	    		
 	    		//System.out.println("i=" + i);
-	    		
-	    		
 	    		
 	    		
 	    		for(int j=0; j<n_r; j++) {
@@ -125,7 +120,6 @@ public class TGraph {
 	    		}
 	    			
 	    			if(verif==1) {
-	    				
 	    				
 	    				
 	    				for(int k=0; k<n_c; k++) {
@@ -163,7 +157,6 @@ public class TGraph {
 	    		}
 	    			
 	    	
-	    	
 	    	byte[][] err = new byte[1][n_c];
             for (int i=0; i<n_c; i++){
                 err[0][i] = -1;
@@ -173,9 +166,5 @@ public class TGraph {
 	    	
 	    }
 	    
- 
-
-
-
 
 }
