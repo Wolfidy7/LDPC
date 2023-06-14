@@ -79,6 +79,7 @@ public class TGraph {
     public Matrix decode(Matrix code, int rounds) {
 		 		 
 		 	
+            //initialisation
 		 	for(int i=0; i<n_c;i++) {
 	    		
 	    		right[i][0] = code.getElem(0, i);
@@ -89,15 +90,13 @@ public class TGraph {
 	    	int verif = 0;
 	    	byte [][] tab = new byte[1][code.getCols()];
 	    	Matrix x;
-	    	int max = 0;
 	    	int [] count = new int[code.getCols()];
 	    	
 	    	
+            //Boucle principale
 	    	for(int i=0; i<rounds; i++) {
 	    		
-	    		//System.out.println("i=" + i);
-	    		
-	    		
+	    		//Calcul des parités
 	    		for(int j=0; j<n_r; j++) {
 	    			
 	    			left[j][0] = 0;
@@ -105,23 +104,21 @@ public class TGraph {
 	    			for(int k=1; k<w_r+1; k++) {
 	    				left[j][0]= (left[j][0] + right[left[j][k]][0])%2;
 	    				
-	    				//this.display();
 	    			}
 	    		}
 	    			
-	    			
+	    		//Vérification
 	    		for(int k=0; k<n_r; k++) {
     				if(left[k][0] != 0) {
     					verif = 0;
     					break; 
-    					
     				}
     				verif = 1;
 	    		}
 	    			
 	    			if(verif==1) {
 	    				
-	    				
+
 	    				for(int k=0; k<n_c; k++) {
 	    					tab[0][k] = (byte)right[k][0];
 	    					
@@ -132,6 +129,8 @@ public class TGraph {
 	    				
 	    			}
 	    			
+                    //Calcul du max
+                    int max = 0;
 	    			for(int k=0; k<n_c; k++) {
 	    				count[k] = 0;
 	    				
@@ -145,7 +144,7 @@ public class TGraph {
 	    				
 	    			}
 	    			
-	    			
+	    			//Renversement de bits
 	    			for(int k=0; k<n_c;k++) {
 	    				if(count[k] == max) {
 	    					
@@ -156,7 +155,7 @@ public class TGraph {
 	    		
 	    		}
 	    			
-	    	
+	    	//Si aucune valeur n'est retournée, échec
 	    	byte[][] err = new byte[1][n_c];
             for (int i=0; i<n_c; i++){
                 err[0][i] = -1;

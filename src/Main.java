@@ -201,6 +201,7 @@ public class Main {
 
         //FIN EXO 9
 
+        System.out.println("NB: LA QUESTION 10 EST TRAITEE DANS LE RAPPORT");
         //DEBUT EXO 11
         System.out.println("*****EXO 11*****");
         Matrix H2 = loadMatrix("matrix-2048-6144-5-15", 2048, 6144);
@@ -234,7 +235,7 @@ public class Main {
         //***EXO 12 ***
         System.out.println("*****EXO 12*****");
         
-        int poids=2;
+        int poids=4;
         System.out.println("Vecteur ligne de poids " + poids);
         Matrix you = new Matrix(1,15);
         you.errGen(poids).display();

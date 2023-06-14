@@ -153,7 +153,7 @@ public class Matrix {
                     break;
                 }
             }   
-            for (int p= 0; p<rows; p++){
+            for (int p= 0; p<rows; p++){ //addition des lignes afin d'obtenir une matrice systématique
                 if (getElem(p, j) == (byte) 1 && p!=i){
                     addRow(i, p);
                 }
@@ -201,6 +201,9 @@ public class Matrix {
             int n = r.nextInt(this.cols); //on récupère l'indice d'une colonne au hasard
             if(e.getElem(0, n) == 0){
                 e.setElem(0, n, (byte)1);
+            }
+            else{
+                i--;
             }
         }
         return e;
